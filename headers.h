@@ -5,7 +5,7 @@
 #include <string>
 	
 using namespace std;
-// Forward declarations of classes
+
 
 class Samochod{
 	string marka;
@@ -15,7 +15,7 @@ class Samochod{
 	bool status;
 public:
 	Samochod();
-	~Samochod();
+	void wyswietlDaneSamochodu();
 
 };
 
@@ -23,8 +23,7 @@ class Termin {
 	int data;
 	bool dostepnosc;
 public:
-	Termin();
-	~Termin();
+	//Termin();
 
 };
 
@@ -33,9 +32,8 @@ class Klient {
 	string nazwisko;
 	int nrTelefonu;
 public:
-	Klient();
-	~Klient();
-
+	//Klient();
+	
 };
 
 class KlientBiz:public Klient {
@@ -43,9 +41,8 @@ class KlientBiz:public Klient {
 	string nazwaFirmy;
 	string adres;
 public:
-	KlientBiz();
-	~KlientBiz();
-
+	//KlientBiz();
+	
 };
 
 class Rezerwacja {
@@ -54,8 +51,8 @@ class Rezerwacja {
 	Termin terminRezerwacji;
 	bool czyBiznesowy;
 public:
-	Rezerwacja();
-	~Rezerwacja( );
+	//Rezerwacja();
+	
 
 };
 
