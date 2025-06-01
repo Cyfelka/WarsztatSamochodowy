@@ -23,7 +23,10 @@ class Termin {
 	int data;
 	bool dostepnosc;
 public:
-	//Termin();
+	Termin();
+	Termin(int t, bool b);
+	void wyswietlTermin()const;
+	static void wyswietlTerminy(const Termin tab[], int n);
 
 };
 
