@@ -27,6 +27,8 @@ public:
 	Termin(int t, bool b);
 	void wyswietlTermin()const;
 	static void wyswietlTerminy(const Termin tab[], int n);
+	bool czyDostepny() const { return dostepnosc; };
+	void zarezerwuj();
 
 };
 
@@ -35,8 +37,8 @@ class Klient {
 	string nazwisko;
 	int nrTelefonu;
 public:
-	//Klient();
-	
+	Klient();
+	void wypisz() const;
 };
 
 class KlientBiz:public Klient {
@@ -44,17 +46,22 @@ class KlientBiz:public Klient {
 	string nazwaFirmy;
 	string adres;
 public:
-	//KlientBiz();
-	
+	KlientBiz();
+	void wypiszBiz() const;
+
 };
 
 class Rezerwacja {
 	Klient* daneKlienta;
 	Samochod* daneSamochodu;
-	Termin terminRezerwacji;
+	Termin* terminRezerwacji;
 	bool czyBiznesowy;
+	int idRezerwacji;
 public:
-	//Rezerwacja();
+	Rezerwacja();
+	~Rezerwacja();
+	void wypiszRezerwacje() const;
+	void setTermin(Termin* t);
 	
 
 };
