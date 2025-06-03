@@ -31,7 +31,7 @@ void Samochod::wyswietlDaneSamochodu() {
     cout << "Model: " << model << endl;
     cout << "Rocznik: " << rocznik << endl;
     cout << "Opis usterki: " << opisUsterki << endl;
-    cout << "Status: " << (status ? "Dost�pny" : "Niedost�pny") << endl;
+    cout << "Status: " << (status ? "Dostepny" : "Niedostepny") << endl;
 };
 
 Termin::Termin() : data(0), dostepnosc(false){}
@@ -67,17 +67,17 @@ void Termin::wyswietlTerminy(const Termin tab[], int n) {
 void Termin::zarezerwuj() {
 	if (dostepnosc) {
 		dostepnosc = false;
-		cout << "Termin " << data << " zosta� zarezerwowany.\n";
+		cout << "Termin " << data << " zostal zarezerwowany.\n";
 	}
 	else {
-		cout << "Termin " << data << " jest ju� niedost�pny.\n";
+		cout << "Termin " << data << " jest juz niedostepny.\n";
 	}
 }
 
 Klient::Klient() {
     cout << "Tworzenie klienta indywidualnego:\n";
 
-    cout << "Podaj imi�: ";
+    cout << "Podaj imie: ";
     getline(cin, imie);
 
     cout << "Podaj nazwisko: ";
@@ -87,14 +87,14 @@ Klient::Klient() {
     while (!(cin >> nrTelefonu)) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "Nieprawid�owy format. Podaj numer telefonu (liczba): ";
+        cout << "Nieprawidlowy format. Podaj numer telefonu (liczba): ";
     }
 
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 void Klient::wypisz() const {
     cout << "Klient indywidualny:\n";
-    cout << "  Imi�: " << imie << "\n";
+    cout << "  Imie: " << imie << "\n";
     cout << "  Nazwisko: " << nazwisko << "\n";
     cout << "  Nr telefonu: " << nrTelefonu << "\n";
 }
@@ -108,7 +108,7 @@ KlientBiz::KlientBiz() : Klient() {
         cout << "Niepoprawny format. Podaj NIP (liczba): ";
     }
 
-    cout << "Podaj nazw� firmy: ";
+    cout << "Podaj nazwe firmy: ";
     getline(cin, nazwaFirmy);
 
     cout << "Podaj adres firmy: ";
@@ -133,12 +133,12 @@ Rezerwacja::Rezerwacja() {
     cout << "Wybierz typ klienta:\n";
     cout << "  1. Klient indywidualny\n";
     cout << "  2. Klient biznesowy\n";
-    cout << "Podaj wyb�r (1 lub 2): ";
+    cout << "Podaj wybor (1 lub 2): ";
     int wybor = 0;
     while (!(cin >> wybor) || (wybor != 1 && wybor != 2)) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "Nieprawid�owy wyb�r. Wpisz 1 lub 2: ";
+        cout << "Nieprawidlowy wybor. Wpisz 1 lub 2: ";
     }
 
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -160,7 +160,7 @@ Rezerwacja::Rezerwacja() {
 Rezerwacja::~Rezerwacja() {
     delete daneKlienta;
     delete daneSamochodu;
-    cout << "Destruktor Rezerwacja (ID: " << idRezerwacji << ") � pami�� zwolniona.\n";
+    cout << "Destruktor Rezerwacja (ID: " << idRezerwacji << ") - pamiec zwolniona.\n";
 }
 
 void Rezerwacja::wypiszRezerwacje() const {
@@ -172,7 +172,7 @@ void Rezerwacja::wypiszRezerwacje() const {
         KlientBiz* kb = static_cast<KlientBiz*>(daneKlienta);
         kb->wypiszBiz();
     }
-    cout << "\n--- Samoch�d ---\n";
+    cout << "\n--- Samochod ---\n";
     daneSamochodu->wyswietlDaneSamochodu();
     cout << "\n--- Termin ---\n";
     terminRezerwacji->wyswietlTermin();
@@ -183,7 +183,7 @@ void Rezerwacja::setTermin(Termin* t) {
         terminRezerwacji = t;
     }
     else {
-        cout << "B��d: termin nie mo�e by� pusty lub niedost�pny.\n";
+        cout << "Blad: termin nie moze byc pusty lub niedostepny.\n";
     }
 }
 
@@ -194,7 +194,7 @@ vector<Czesc> Czesc::stworzListeCzesci() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     while (true) {
-        cout << "\nCzy chcesz doda� cz��? (t/n): ";
+        cout << "\nCzy chcesz dodac czesc? (t/n): ";
         cin >> odpowiedz;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
@@ -204,29 +204,29 @@ vector<Czesc> Czesc::stworzListeCzesci() {
         else if (odpowiedz == 't' || odpowiedz == 'T') {
             Czesc c;
 
-            cout << "Podaj nazw� cz�ci: ";
+            cout << "Podaj nazwe czeci: ";
             getline(cin, c.nazwa);
 
-            cout << "Podaj ilo�� (liczba ca�kowita >= 0): ";
+            cout << "Podaj ilosc (liczba calkowita >= 0): ";
             while (!(cin >> c.ilosc) || c.ilosc < 0) {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Nieprawid�owa warto��. Podaj liczb� ca�kowit� >= 0: ";
+                cout << "Nieprawidlowa wartosc. Podaj liczbe calkowita >= 0: ";
             }
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-            cout << "Podaj cen� (np. 49.99): ";
+            cout << "Podaj cene (np. 49.99): ";
             while (!(cin >> c.cena) || c.cena < 0.0) {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Nieprawid�owa warto��. Podaj cen� >= 0.0: ";
+                cout << "Nieprawidlowa wartosc. Podaj cene >= 0.0: ";
             }
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
             lista.push_back(c);
         }
         else {
-            cout << "Niepoprawna odpowied�. Wpisz 't' (tak) lub 'n' (nie).\n";
+            cout << "Niepoprawna odpowiedz. Wpisz 't' (tak) lub 'n' (nie).\n";
         }
     }
 // test

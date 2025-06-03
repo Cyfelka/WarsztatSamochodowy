@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <limits>
 #include <vector>
 
 using namespace std;
@@ -31,7 +32,7 @@ int main() {
 	while (!(cin >> wybor) || (wybor != 1 && wybor != 2)) {
 		cin.clear();
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		cout << "Nieprawid³owy wybór. Wpisz 1 lub 2: ";
+		cout << "Nieprawidlowy wybor. Wpisz 1 lub 2: ";
 	}
 
 	switch (wybor)
@@ -47,8 +48,8 @@ int main() {
 			) {
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "Nieprawid³owy numer terminu lub termin niedostêpny.\n";
-			cout << "Wpisz ponownie liczbê od 1 do 31: ";
+			cout << "Nieprawidlowy numer terminu lub termin niedostepny.\n";
+			cout << "Wpisz ponownie liczbe od 1 do 31: ";
 		}
 		rezerwacja1->setTermin(&TablicaTerminowStyczen[numerTerminu - 1]);
 
