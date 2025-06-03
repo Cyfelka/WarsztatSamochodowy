@@ -23,7 +23,9 @@ int main() {
 	cout << "Wybierz, opcje:\n";
 	cout << "  1. Rezerwacja terminu\n";
 	cout << "  2. Status Naprawy pojazdu\n";
-	cout << "Podaj wybór (od 1 do ...): ";
+	cout << "=======================\n";
+	cout << "  3. Sporzadz kosztorys\n";
+	cout << "Podaj wybor (od 1 do ...): ";
 
 	int wybor = 0;
 	while (!(cin >> wybor) || (wybor != 1 && wybor != 2)) {
@@ -61,6 +63,7 @@ int main() {
 		break;
 	}
 	case 3: {
+		vector<Czesc> wszystkieCzesci=Czesc::stworzListeCzesci();
 		break;
 	}
 	default:

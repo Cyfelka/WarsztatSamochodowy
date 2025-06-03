@@ -186,3 +186,52 @@ void Rezerwacja::setTermin(Termin* t) {
         cout << "B³¹d: termin nie mo¿e byæ pusty lub niedostêpny.\n";
     }
 }
+
+Czesc::Czesc() : nazwa(""), ilosc(0), cena(0.0) {};
+vector<Czesc> Czesc::stworzListeCzesci() {
+    vector<Czesc> lista;
+    char odpowiedz = 't';
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    while (true) {
+        cout << "\nCzy chcesz dodaæ czêœæ? (t/n): ";
+        cin >> odpowiedz;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        if (odpowiedz == 'n' || odpowiedz == 'N') {
+            break;
+        }
+        else if (odpowiedz == 't' || odpowiedz == 'T') {
+            Czesc c;
+
+            cout << "Podaj nazwê czêœci: ";
+            getline(cin, c.nazwa);
+
+            cout << "Podaj iloœæ (liczba ca³kowita >= 0): ";
+            while (!(cin >> c.ilosc) || c.ilosc < 0) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Nieprawid³owa wartoœæ. Podaj liczbê ca³kowit¹ >= 0: ";
+            }
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            cout << "Podaj cenê (np. 49.99): ";
+            while (!(cin >> c.cena) || c.cena < 0.0) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Nieprawid³owa wartoœæ. Podaj cenê >= 0.0: ";
+            }
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            lista.push_back(c);
+        }
+        else {
+            cout << "Niepoprawna odpowiedŸ. Wpisz 't' (tak) lub 'n' (nie).\n";
+        }
+    }
+
+    return lista;
+}
+
+
+

@@ -3,7 +3,8 @@
 
 #include <iostream>
 #include <string>
-	
+#include <vector>	
+
 using namespace std;
 
 
@@ -65,6 +66,17 @@ public:
 	
 
 };
+
+class Czesc{
+	string nazwa;
+	double ilosc;
+	double cena;
+public:
+	Czesc();
+	vector<Czesc> static stworzListeCzesci();
+
+};
+
 
 
 
