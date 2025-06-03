@@ -8,7 +8,7 @@ using namespace std;
 
 
 int main() {
-	srand(static_cast<unsigned int>(time(0)));
+	srand(static_cast<unsigned int>(time(0))); //test git repo
 	Termin TablicaTerminowStyczen[31];
 	for (int i = 0; i < 31; i++) {
 		TablicaTerminowStyczen[i] = Termin(i + 1, rand() % 2);
