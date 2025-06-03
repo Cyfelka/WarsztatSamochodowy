@@ -73,12 +73,33 @@ class Czesc{
 	double cena;
 public:
 	Czesc();
+	Czesc(const string& nazwa, double ilosc, double cena);
+
+    string getNazwa() const;
+    double getIlosc() const;
+    double getCena() const;
+    double koszt() const;
 	vector<Czesc> static stworzListeCzesci();
+	void static wyswietlListeCzesci(const vector<Czesc>& lista);
 
 };
 
 
+class Kosztorys {
+	string opisUsterki;
+	vector<Czesc> czesci;
+	int liczbaGodzin;
+	double stawkaGodzinowa = 41.90;
+public:
+	Kosztorys(const string& opis, double godziny, double stawka);
 
+	void dodajCzesc(const string& nazwa, double cena, int ilosc);
+	double kosztCzesci() const;
+	double kosztRobocizny() const;
+	double kosztCalkowity() const;
+	void wyswietlKosztorys() const;
+
+};
 
 
 #endif

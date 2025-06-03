@@ -29,7 +29,7 @@ int main() {
 	cout << "Podaj wybor (od 1 do ...): ";
 
 	int wybor = 0;
-	while (!(cin >> wybor) || (wybor != 1 && wybor != 2)) {
+	while (!(cin >> wybor) || (wybor != 1 && wybor != 2 && wybor != 3 && wybor != 4)) {
 		cin.clear();
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << "Nieprawidlowy wybor. Wpisz 1 lub 2: ";
@@ -65,7 +65,8 @@ int main() {
 	}
 	case 3: {
 		vector<Czesc> wszystkieCzesci=Czesc::stworzListeCzesci();
-		break;
+    	Czesc::wyswietlListeCzesci(wszystkieCzesci);
+    	break;
 	}
 	default:
 		break;

@@ -53,4 +53,36 @@ vector<Czesc> Czesc::stworzListeCzesci() {
     }
 // test
     return lista;
+
+
+}
+void Czesc::wyswietlListeCzesci(const vector<Czesc>& lista) {
+    cout << "\n=== Lista Czesci ===\n";
+    cout << left << setw(20) << "Nazwa"
+        << setw(10) << "Ilosc"
+        << setw(10) << "Cena"
+        << endl;
+    cout << string(50, '-') << endl;
+    for (const auto& c : lista) {
+        cout << left << setw(20) << c.nazwa
+            << setw(10) << c.ilosc
+            << setw(10) << fixed << setprecision(2) << c.cena
+            << endl;
+    }
+}
+
+string Czesc::getNazwa() const {
+    return nazwa;
+}
+
+double Czesc::getIlosc() const {
+    return ilosc;
+}
+
+double Czesc::getCena() const {
+    return cena;
+}
+
+double Czesc::koszt() const {
+    return ilosc * cena;
 }
