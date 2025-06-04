@@ -45,3 +45,19 @@ Faktura Ksiegowy::wystawFakture(const Kosztorys& kosztorys, int nip, int obecnyC
 	Kosztorys kosztorys(opis, czesci, godziny);
 	return kosztorys;
 }
+Kosztorys Mechanik::naprawaPojazdu(vector<Rezerwacja> wszystkieRezerwacje) {
+	int temp = 0;
+	for (int i = 0; i < wszystkieRezerwacje.size(); i++) {
+		if (wszystkieRezerwacje[i].getTermin() == obecnyCzas) {
+			temp = i;
+		}
+	}
+	if(temp!=0){
+		wszystkieRezerwacje[temp].wypiszRezerwacje();
+
+		Kosztorys kosztorys = sporzadzKosztorys(wszystkieRezerwacje[temp].getOpisUsterki());
+		kosztorys.wyswietlKosztorys();
+		wszystkieRezerwacje[temp].setStatus(1);
+		return kosztorys;
+	}
+}

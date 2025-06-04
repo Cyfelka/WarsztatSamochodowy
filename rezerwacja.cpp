@@ -70,3 +70,12 @@ void Rezerwacja::setTermin(Termin* t) {
         cout << "Blad: termin nie moze byc pusty lub niedostepny.\n";
     }
 }
+int Rezerwacja::getTermin() {
+	if (terminRezerwacji != nullptr) {
+		return terminRezerwacji->getData();
+	}
+	else {
+		cout << "Blad: Termin rezerwacji nie jest ustawiony.\n";
+		return -1;
+	}
+}

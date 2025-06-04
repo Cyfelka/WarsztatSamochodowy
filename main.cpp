@@ -6,6 +6,7 @@
 #include <vector>
 
 using namespace std;
+
 int obecnyCzas = 1;
 
 int main() {

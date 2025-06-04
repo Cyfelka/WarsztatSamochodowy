@@ -5,8 +5,10 @@
 #include <string>
 #include <vector>	
 
+
 using namespace std;
 
+extern int obecnyCzas;
 
 class Samochod{
 	string marka;
@@ -17,6 +19,8 @@ class Samochod{
 public:
 	Samochod();
 	void wyswietlDaneSamochodu();
+	string getOpisUsterki() const { return opisUsterki; }
+	void setStatus(bool s) { status = s; }
 
 };
 
@@ -30,6 +34,7 @@ public:
 	static void wyswietlTerminy(const Termin tab[], int n);
 	bool czyDostepny() const { return dostepnosc; };
 	void zarezerwuj();
+	int getData() const { return data; }
 
 };
 
@@ -58,12 +63,16 @@ class Rezerwacja {
 	Termin* terminRezerwacji;
 	bool czyBiznesowy;
 	int idRezerwacji;
+//	Kosztorys* kosztorys;
 public:
 	Rezerwacja();
 	~Rezerwacja();
 	void wypiszRezerwacje() const;
 	void setTermin(Termin* t);
-	
+	int getTermin();
+	string getOpisUsterki() const { return daneSamochodu->getOpisUsterki(); }
+	void setStatus(bool s) { daneSamochodu->setStatus(s); }
+
 
 };
 
@@ -145,6 +154,7 @@ class Mechanik : public Pracownik {
 public:
     Mechanik(const string& imie, const string& nazwisko, int wiek);
 	Kosztorys sporzadzKosztorys(const string& opis);
+	Kosztorys naprawaPojazdu(vector<Rezerwacja> wszystkieRezerwacje);
 };
 
 
