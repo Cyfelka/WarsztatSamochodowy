@@ -7,10 +7,10 @@
 #include <string>
 using namespace std;
 
-DokumentSprzedazy::DokumentSprzedazy(const string& data, double kwota)
+DokumentSprzedazy::DokumentSprzedazy(const int data, double kwota)
     : dataWystawienia(data), kwota(kwota) {}
 
-Paragon::Paragon(const string& data, const Kosztorys& kosztorys)
+Paragon::Paragon(const int data, const Kosztorys& kosztorys)
     : DokumentSprzedazy(data, kosztorys.kosztCalkowity()) {}
 
 void Paragon::drukuj() const {
@@ -21,7 +21,7 @@ void Paragon::drukuj() const {
 }
 
 
-Faktura::Faktura(const string& data, const Kosztorys& kosztorys, int nip)
+Faktura::Faktura(const int data, const Kosztorys& kosztorys, int nip)
     : DokumentSprzedazy(data, kosztorys.kosztCalkowity()), nip(nip) {}
 
 void Faktura::drukuj() const {

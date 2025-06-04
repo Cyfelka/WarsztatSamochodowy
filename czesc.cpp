@@ -10,6 +10,9 @@ using namespace std;
 
 
 Czesc::Czesc() : nazwa(""), ilosc(0), cena(0.0) {};
+Czesc::Czesc(const string& nazwa, double ilosc, double cena)
+    : nazwa(nazwa), ilosc(ilosc), cena(cena) {
+}
 vector<Czesc> Czesc::stworzListeCzesci() {
     vector<Czesc> lista;
     char odpowiedz = 't';

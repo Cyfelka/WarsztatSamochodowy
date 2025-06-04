@@ -10,8 +10,11 @@ using namespace std;
 
 Kosztorys::Kosztorys(const string& opis, double godziny, double stawka)
     : opisUsterki(opis), liczbaGodzin(godziny), stawkaGodzinowa(stawka) {}
+Kosztorys::Kosztorys(const string& opis, const vector<Czesc>& czesci, double godziny)
+	: opisUsterki(opis), czesci(czesci), liczbaGodzin(godziny), stawkaGodzinowa(41.90) {
+}
 
-void Kosztorys::dodajCzesc(const std::string& nazwa, double cena, int ilosc) {
+void Kosztorys::dodajCzesc(const std::string& nazwa, double cena, double ilosc) {
     czesci.push_back({nazwa, cena, ilosc});
 }
 

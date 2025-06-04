@@ -17,6 +17,7 @@
   <ItemGroup>
     <None Include="..\.gitattributes" />
     <None Include="..\.gitignore" />
+    <None Include="..\main.exe" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\headers.h">
@@ -27,7 +28,28 @@
     <ClCompile Include="..\main.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="..\workshop.cpp">
+    <ClCompile Include="..\czesc.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\klient.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\kosztorys.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\rezerwacja.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\samochod.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\termin.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dokumentsprzedazy.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pracownik.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>

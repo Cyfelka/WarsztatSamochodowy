@@ -129,13 +129,21 @@
   <ItemGroup>
     <None Include="..\.gitattributes" />
     <None Include="..\.gitignore" />
+    <None Include="..\main.exe" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\headers.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\czesc.cpp" />
+    <ClCompile Include="..\dokumentsprzedazy.cpp" />
+    <ClCompile Include="..\klient.cpp" />
+    <ClCompile Include="..\kosztorys.cpp" />
     <ClCompile Include="..\main.cpp" />
-    <ClCompile Include="..\workshop.cpp" />
+    <ClCompile Include="..\pracownik.cpp" />
+    <ClCompile Include="..\rezerwacja.cpp" />
+    <ClCompile Include="..\samochod.cpp" />
+    <ClCompile Include="..\termin.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

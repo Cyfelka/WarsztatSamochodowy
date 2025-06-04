@@ -88,12 +88,13 @@ public:
 class Kosztorys {
 	string opisUsterki;
 	vector<Czesc> czesci;
-	int liczbaGodzin;
+	double liczbaGodzin;
 	double stawkaGodzinowa = 41.90;
 public:
 	Kosztorys(const string& opis, double godziny, double stawka);
+	Kosztorys(const string& opis, const vector<Czesc>& czesci, double liczbaGodzin);
 
-	void dodajCzesc(const string& nazwa, double cena, int ilosc);
+	void dodajCzesc(const string& nazwa, double cena, double ilosc);
 	double kosztCzesci() const;
 	double kosztRobocizny() const;
 	double kosztCalkowity() const;
@@ -104,10 +105,10 @@ public:
 
 class DokumentSprzedazy {
 protected:
-	string dataWystawienia;
+	int dataWystawienia;
 	double kwota;
 public: 
-	DokumentSprzedazy(const string& data, double kwota);
+	DokumentSprzedazy(const int data, double kwota);
     virtual void drukuj() const = 0; 
     virtual ~DokumentSprzedazy() {}
 };
@@ -115,7 +116,7 @@ public:
 
 class Paragon : public DokumentSprzedazy {
 public:
-    Paragon(const string& data, const Kosztorys& kosztorys);
+    Paragon(const int data, const Kosztorys& kosztorys);
     void drukuj() const override;
 };
 
@@ -123,7 +124,7 @@ public:
 class Faktura : public DokumentSprzedazy {
     int nip;
 public:
-    Faktura(const string& data, const Kosztorys& kosztorys, int nip);
+    Faktura(const int data, const Kosztorys& kosztorys, int nip);
     void drukuj() const override;
 };
 
@@ -143,16 +144,15 @@ public:
 class Mechanik : public Pracownik {
 public:
     Mechanik(const string& imie, const string& nazwisko, int wiek);
-	Kosztorys sporzadzKosztorys(const string& opis, double godziny);
-
+	Kosztorys sporzadzKosztorys(const string& opis);
 };
 
 
 class Ksiegowy : public Pracownik {
 public:
 	Ksiegowy(const string& imie, const string& nazwisko, int wiek);
-	Faktura wystawFakture(const Kosztorys& kosztorys, int nip) const;
-    Paragon wystawParagon(const Kosztorys& kosztorys) const;
+	Faktura wystawFakture(const Kosztorys& kosztorys, int nip, int obecnyCzas) const;
+    Paragon wystawParagon(const Kosztorys& kosztorys, int obecnyCzas) const;
 
 };
 
