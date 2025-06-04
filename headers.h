@@ -102,4 +102,59 @@ public:
 };
 
 
+class DokumentSprzedazy {
+protected:
+	string dataWystawienia;
+	double kwota;
+public: 
+	DokumentSprzedazy(const string& data, double kwota);
+    virtual void drukuj() const = 0; 
+    virtual ~DokumentSprzedazy() {}
+};
+
+
+class Paragon : public DokumentSprzedazy {
+public:
+    Paragon(const string& data, const Kosztorys& kosztorys);
+    void drukuj() const override;
+};
+
+
+class Faktura : public DokumentSprzedazy {
+    int nip;
+public:
+    Faktura(const string& data, const Kosztorys& kosztorys, int nip);
+    void drukuj() const override;
+};
+
+
+class Pracownik {
+protected:
+	string imie;
+	string nazwisko;
+	int wiek;
+public:
+	Pracownik(const string& imie, const string& nazwisko, int wiek);
+	virtual ~Pracownik() = default;
+
+};
+
+
+class Mechanik : public Pracownik {
+public:
+    Mechanik(const string& imie, const string& nazwisko, int wiek);
+	Kosztorys sporzadzKosztorys(const string& opis, double godziny);
+
+};
+
+
+class Ksiegowy : public Pracownik {
+public:
+	Ksiegowy(const string& imie, const string& nazwisko, int wiek);
+	Faktura wystawFakture(const Kosztorys& kosztorys, int nip) const;
+    Paragon wystawParagon(const Kosztorys& kosztorys) const;
+
+};
+
+
 #endif
