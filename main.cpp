@@ -1,4 +1,4 @@
-#include "headers.h"
+#include "headers.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -29,6 +29,7 @@ int main() {
 		cout << "  2. Status Naprawy pojazdu\n";
 		cout << "=======================\n";
 		cout << "  3. Sporzadz kosztorys\n";
+		cout << "  4. Napraw pojazd\n";
 		cout << "=======================\n";
 		cout << "  7. Skip 1 dzien\n";
 		cout << "  8. Skip 7 dni\n";
@@ -86,6 +87,7 @@ int main() {
 			}
 
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
 			if (wybor == 1) {
 				int idRezerwacji;
 				cout << "Podaj ID rezerwacji: ";
@@ -139,6 +141,72 @@ int main() {
 			Czesc::wyswietlListeCzesci(wszystkieCzesci);
 			break;
 		}
+		case 4: {
+			system("cls");
+
+			cout << "=== Wyszukiwanie Rezerwacji ===\n";
+
+			cout << "Wybierz typ klienta:\n";
+			cout << "  1. Podaj ID\n";
+			cout << "  2. Podaj Imie i Nazwisko\n";
+			cout << "Podaj wybor (1 lub 2): ";
+			int wybor = 0;
+			while (!(cin >> wybor) || (wybor != 1 && wybor != 2)) {
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "Nieprawidlowy wybor. Wpisz 1 lub 2: ";
+			}
+
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+			if (wybor == 1) {
+				int idRezerwacji;
+				cout << "Podaj ID rezerwacji: ";
+				while (!(cin >> idRezerwacji) || idRezerwacji < 1) {
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Nieprawidlowe ID. Podaj ID rezerwacji (liczba calkowita >= 1): ";
+				}
+				bool found = false;
+				for (const Rezerwacja* r : wszystkieRezerwacje) {
+					if (r->getIdRezerwacji() == idRezerwacji) {
+						found = true;
+              r->naprawSamochod();
+						break;
+					}
+				}
+				if (!found) {
+					cout << "Nie znaleziono rezerwacji o ID: " << idRezerwacji << endl;
+				}
+			}
+			else if (wybor == 2) {
+				string imie, nazwisko;
+				cout << "Podaj imie: ";
+				getline(cin, imie);
+				cout << "Podaj nazwisko: ";
+				getline(cin, nazwisko);
+				bool found = false;
+				for (const Rezerwacja* r : wszystkieRezerwacje) {
+					if (r->getDaneKlienta()->getImie() == imie && r->getDaneKlienta()->getNazwisko() == nazwisko) {
+						found = true;
+          r->naprawSamochod();
+						break;
+					}
+				}
+				if (!found) {
+					cout << "Nie znaleziono rezerwacji dla klienta: " << imie << " " << nazwisko << endl;
+				}
+			}
+			else {
+				cout << "Podales liczbe z poza zakresu ";
+			}
+			cout << "Nacisnij Enter, aby kontynuowac...";
+			cin.get();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			break;
+			break;
+		}
+      
 		case 7: {
 			obecnyCzas++;
 			cout << "Przesunieto czas o 1 dzien. Obecny czas: " << obecnyCzas << ".01.2025\n";

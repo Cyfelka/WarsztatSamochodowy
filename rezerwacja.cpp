@@ -54,8 +54,11 @@ Rezerwacja::Rezerwacja() {
     if (wybor2==1)
     {
         czyTylkoKosztorys = 1;
-    }else{ czyTylkoKosztorys=0;}
-	kosztorys = nullptr;
+    }
+  else
+  { czyTylkoKosztorys=0;
+    kosztorys = new Kosztorys(Rezerwacja::getOpisUsterki());
+  }
 }
 Rezerwacja::~Rezerwacja() {
     delete daneKlienta;
@@ -108,3 +111,33 @@ int Rezerwacja::getTermin() {
 		return -1;
 	}
 }
+
+  void Rezerwacja::naprawSamochod() const {
+  char odpowiedz = 't';
+  string nazwa;
+  double cena, ilosc, wh;
+  while (true) {
+    cout << "Czy dodac czesci? (t/n)\n";
+    cin >> odpowiedz;
+    if (odpowiedz == 'n' || odpowiedz == 'N') break;
+    if (odpowiedz == 't' || odpowiedz == 'T') {
+      cout << "Podaj nazwe czesci\n";
+      cin >> nazwa;
+      cout << "Podaj ilosc czesci\n";
+      cin >> ilosc;
+      cout << "Podaj cene czesci\n";
+      cin >> cena;
+      kosztorys->dodajCzesc(nazwa, ilosc, cena);
+    }
+    else cout << "Nie ma takiej odpowiedzi\n";
+  }
+  cout << "Podaj liczbe roboczogodzin\n";
+  cin >> wh;
+  kosztorys->dodajGodziny(wh);
+  kosztorys->kosztCzesci();
+  kosztorys->kosztRobocizny();
+  kosztorys->kosztCalkowity();
+  kosztorys->wyswietlKosztorys(); //debug
+  daneSamochodu->setNaprawiony();
+}
+

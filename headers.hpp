@@ -115,7 +115,6 @@ class Kosztorys {
 public:
 	Kosztorys(const string& opis, double godziny, double stawka);
 	Kosztorys(const string& opis, const vector<Czesc>& czesci, double liczbaGodzin);
-	Kosztorys(const string& opis);
 
 	void dodajCzesc(const string& nazwa, double cena, double ilosc);
 	double kosztCzesci() const;

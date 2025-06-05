@@ -13,6 +13,7 @@ Kosztorys::Kosztorys(const string& opis, double godziny, double stawka)
 Kosztorys::Kosztorys(const string& opis, const vector<Czesc>& czesci, double godziny)
 	: opisUsterki(opis), czesci(czesci), liczbaGodzin(godziny), stawkaGodzinowa(41.90) {
 }
+Kosztorys::Kosztorys(const string& opis) : opisUsterki(opis) {}
 
 void Kosztorys::dodajCzesc(const std::string& nazwa, double cena, double ilosc) {
     czesci.push_back({nazwa, cena, ilosc});
@@ -52,4 +53,8 @@ void Kosztorys::wyswietlKosztorys() const {
               << kosztRobocizny() << " zl\n";
 
     cout << "\nLaczny koszt: " << kosztCalkowity() << " zl\n";
+}
+
+void Kosztorys::dodajGodziny( double godziny) {
+  liczbaGodzin = godziny;
 }
