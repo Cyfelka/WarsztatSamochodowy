@@ -123,7 +123,8 @@ int Rezerwacja::getTermin() {
     if (odpowiedz == 'n' || odpowiedz == 'N') break;
     if (odpowiedz == 't' || odpowiedz == 'T') {
       cout << "Podaj nazwe czesci\n";
-      cin >> nazwa;
+      cin.ignore();
+      getline(cin, nazwa);
       cout << "Podaj ilosc czesci\n";
       cin >> ilosc;
       cout << "Podaj cene czesci\n";

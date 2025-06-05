@@ -43,6 +43,7 @@ KlientBiz::KlientBiz() : Klient() {
     }
 
     cout << "Podaj nazwe firmy: ";
+    cin.ignore();
     getline(cin, nazwaFirmy);
 
     cout << "Podaj adres firmy: ";
