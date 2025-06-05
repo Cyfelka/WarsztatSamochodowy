@@ -34,7 +34,7 @@ Faktura Ksiegowy::wystawFakture(const Kosztorys& kosztorys, int nip, int obecnyC
     return Faktura(obecnyCzas, kosztorys, nip);
 }Kosztorys Mechanik::sporzadzKosztorys(const string& opis) {
 	double godziny = 0.0;
-	cout << "Opi awari: " << opis << endl;
+	cout << "Opis awari: " << opis << endl;
 	cout << "Podaj liczbe godzin pracy: ";
 	while (!(cin >> godziny) || godziny < 0) {
 		cin.clear();
@@ -45,19 +45,19 @@ Faktura Ksiegowy::wystawFakture(const Kosztorys& kosztorys, int nip, int obecnyC
 	Kosztorys kosztorys(opis, czesci, godziny);
 	return kosztorys;
 }
-Kosztorys Mechanik::naprawaPojazdu(vector<Rezerwacja> wszystkieRezerwacje) {
+void Mechanik::naprawaPojazdu(vector<Rezerwacja*> wszystkieRezerwacje) {
 	int temp = 0;
 	for (int i = 0; i < wszystkieRezerwacje.size(); i++) {
-		if (wszystkieRezerwacje[i].getTermin() == obecnyCzas) {
+		if (wszystkieRezerwacje[i]->getTermin() == obecnyCzas) {
 			temp = i;
 		}
 	}
 	if(temp!=0){
-		wszystkieRezerwacje[temp].wypiszRezerwacje();
+		wszystkieRezerwacje[temp]->wypiszRezerwacje();
 
-		Kosztorys kosztorys = sporzadzKosztorys(wszystkieRezerwacje[temp].getOpisUsterki());
+		Kosztorys kosztorys = sporzadzKosztorys(wszystkieRezerwacje[temp]->getOpisUsterki());
 		kosztorys.wyswietlKosztorys();
-		wszystkieRezerwacje[temp].setStatus(1);
-		return kosztorys;
+		wszystkieRezerwacje[temp]->setStatus(1);
+		wszystkieRezerwacje[temp]->setKosztorys(&kosztorys);
 	}
 }

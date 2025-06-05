@@ -9,6 +9,7 @@
 using namespace std;
 
 extern int obecnyCzas;
+class Kosztorys;
 
 class Samochod{
 	string marka;
@@ -21,6 +22,7 @@ public:
 	void wyswietlDaneSamochodu();
 	string getOpisUsterki() const { return opisUsterki; }
 	void setStatus(bool s) { status = s; }
+	bool getStatus() const { return status; }
 
 };
 
@@ -45,6 +47,8 @@ class Klient {
 public:
 	Klient();
 	void wypisz() const;
+	string getImie() const { return imie; }
+	string getNazwisko() const { return nazwisko; }
 };
 
 class KlientBiz:public Klient {
@@ -63,7 +67,8 @@ class Rezerwacja {
 	Termin* terminRezerwacji;
 	bool czyBiznesowy;
 	int idRezerwacji;
-//	Kosztorys* kosztorys;
+	bool czyTylkoKosztorys = false;
+	Kosztorys* kosztorys;
 public:
 	Rezerwacja();
 	~Rezerwacja();
@@ -71,7 +76,11 @@ public:
 	void setTermin(Termin* t);
 	int getTermin();
 	string getOpisUsterki() const { return daneSamochodu->getOpisUsterki(); }
+	int getIdRezerwacji() const { return idRezerwacji; }
+	Klient* getDaneKlienta() const { return daneKlienta; }
+	bool getTylkoKosztorys() const { return czyTylkoKosztorys; }
 	void setStatus(bool s) { daneSamochodu->setStatus(s); }
+	void setKosztorys(Kosztorys* k) { kosztorys = k; }
 
 
 };
@@ -88,8 +97,8 @@ public:
     double getIlosc() const;
     double getCena() const;
     double koszt() const;
-	vector<Czesc> static stworzListeCzesci();
-	void static wyswietlListeCzesci(const vector<Czesc>& lista);
+	static vector<Czesc> stworzListeCzesci();
+	static void wyswietlListeCzesci(const vector<Czesc>& lista);
 
 };
 
@@ -154,7 +163,7 @@ class Mechanik : public Pracownik {
 public:
     Mechanik(const string& imie, const string& nazwisko, int wiek);
 	Kosztorys sporzadzKosztorys(const string& opis);
-	Kosztorys naprawaPojazdu(vector<Rezerwacja> wszystkieRezerwacje);
+	void naprawaPojazdu(vector<Rezerwacja*> wszystkieRezerwacje);
 };
 
 

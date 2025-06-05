@@ -40,6 +40,22 @@ Rezerwacja::Rezerwacja() {
     cout << "\n--- Dane samochodu ---\n";
     daneSamochodu = new Samochod();
     terminRezerwacji = nullptr;
+
+    cout << "Co robimy z samochodem:\n";
+    cout << "  1. Tylko kosztorys\n";
+    cout << "  2. Naprawa\n";
+    cout << "Podaj wybor (1 lub 2): ";
+	int wybor2 = 0;
+    while (!(cin >> wybor2) || (wybor2 != 1 && wybor2 != 2)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Nieprawidlowy wybor. Wpisz 1 lub 2: ";
+    }
+    if (wybor2==1)
+    {
+        czyTylkoKosztorys = 1;
+    }else{ czyTylkoKosztorys=0;}
+	kosztorys = nullptr;
 }
 Rezerwacja::~Rezerwacja() {
     delete daneKlienta;
@@ -59,8 +75,21 @@ void Rezerwacja::wypiszRezerwacje() const {
     cout << "\n--- Samochod ---\n";
     daneSamochodu->wyswietlDaneSamochodu();
     cout << "\n--- Termin ---\n";
-    terminRezerwacji->wyswietlTermin();
+    cout<<"\033[32m"<<terminRezerwacji->getData()<<" - Zarezerwowany\033[0m";
     cout << "\n=========================================\n";
+    if (daneSamochodu->getStatus() == 1) {
+        cout << "\033[32mSamochod jest gotowy do odbioru.\033[0m\n";
+    }
+    else {
+        cout << "\033[33mSamochod nie jest jeszcze gotowy do odbioru.\033[0m\n";
+    }
+    if (kosztorys != nullptr) {
+		cout << "\n--- Kosztorys ---\n";
+		kosztorys->wyswietlKosztorys();
+	}
+	else {
+		cout << "Brak kosztorysu.\n";
+	}
 }
 void Rezerwacja::setTermin(Termin* t) {
     if (t != nullptr && t->czyDostepny()) {

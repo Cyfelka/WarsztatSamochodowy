@@ -21,7 +21,7 @@ void Kosztorys::dodajCzesc(const std::string& nazwa, double cena, double ilosc) 
 double Kosztorys::kosztCzesci() const {
     double suma = 0.0;
     for (const auto& czesc : czesci) {
-        suma += czesc.getCena();
+        suma += czesc.getCena()*czesc.getIlosc();
     }
     return suma;
 }
