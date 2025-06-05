@@ -132,7 +132,7 @@
     <None Include="..\main.exe" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\headers.h" />
+    <ClInclude Include="..\headers.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\czesc.cpp" />

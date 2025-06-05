@@ -20,7 +20,7 @@
     <None Include="..\main.exe" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\headers.h">
+    <ClInclude Include="..\headers.hpp">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>

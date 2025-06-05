@@ -1,4 +1,4 @@
-#include "headers.h"
+#include "headers.hpp"
 #include <limits>
 #include <iomanip>
 #include <iostream>
@@ -67,6 +67,7 @@ Rezerwacja::~Rezerwacja() {
 }
 
 void Rezerwacja::wypiszRezerwacje() const {
+  if (oplacona && daneSamochodu->getNaprawiony()) daneSamochodu->setStatus(1);
     cout << "=== Podsumowanie rezerwacji (ID: " << idRezerwacji << ") ===\n";
     if (!czyBiznesowy) {
         daneKlienta->wypisz();
@@ -80,7 +81,7 @@ void Rezerwacja::wypiszRezerwacje() const {
     cout << "\n--- Termin ---\n";
     cout<<"\033[32m"<<terminRezerwacji->getData()<<" - Zarezerwowany\033[0m";
     cout << "\n=========================================\n";
-    if (daneSamochodu->getStatus() == 1) {
+    if (daneSamochodu->getStatus()) {
         cout << "\033[32mSamochod jest gotowy do odbioru.\033[0m\n";
     }
     else {
@@ -141,3 +142,22 @@ int Rezerwacja::getTermin() {
   daneSamochodu->setNaprawiony();
 }
 
+void Rezerwacja::oplac() const {
+  char odpowiedz;
+  if (! (daneSamochodu->getNaprawiony())) {
+    cout << "Nie mozesz oplacic samochodu przed jego naprawa\n";
+    return;
+  }
+  cout << "*****Czy chcesz oplacic naprawe? (t/n)*****\n";
+  while (true) {
+  kosztorys->wyswietlKosztorys();
+  cin >> odpowiedz;
+  if (odpowiedz == 'n' || odpowiedz == 'N') break;
+  if (odpowiedz == 't' || odpowiedz == 'T') {
+  oplacona = 1;
+  cout << "Dziekujemy za uregulowanie platnosci\n";
+      return;
+    }
+  else cout << "Nieprawidlowy wybor";
+  }
+}

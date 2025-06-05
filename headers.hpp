@@ -1,5 +1,5 @@
-#ifndef HEADERS_H
-#define HEADERS_H
+#ifndef HEADERS_HPP
+#define HEADERS_HPP
 
 #include <iostream>
 #include <string>
@@ -72,6 +72,7 @@ class Rezerwacja {
 	int idRezerwacji;
 	bool czyTylkoKosztorys = false;
 	Kosztorys* kosztorys;
+  mutable bool oplacona = 0;
 public:
 	Rezerwacja();
 	~Rezerwacja();
@@ -85,7 +86,7 @@ public:
 	void setStatus(bool s) { daneSamochodu->setStatus(s); }
 	void setKosztorys(Kosztorys* k) { kosztorys = k; }
   void naprawSamochod() const;
-
+  void oplac() const;
 
 };
 
@@ -115,6 +116,7 @@ class Kosztorys {
 public:
 	Kosztorys(const string& opis, double godziny, double stawka);
 	Kosztorys(const string& opis, const vector<Czesc>& czesci, double liczbaGodzin);
+	Kosztorys(const string& opis);
 
 	void dodajCzesc(const string& nazwa, double cena, double ilosc);
 	double kosztCzesci() const;
