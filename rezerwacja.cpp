@@ -148,16 +148,30 @@ void Rezerwacja::oplac() const {
     cout << "Nie mozesz oplacic samochodu przed jego naprawa\n";
     return;
   }
-  cout << "*****Czy chcesz oplacic naprawe? (t/n)*****\n";
   while (true) {
-  kosztorys->wyswietlKosztorys();
-  cin >> odpowiedz;
-  if (odpowiedz == 'n' || odpowiedz == 'N') break;
-  if (odpowiedz == 't' || odpowiedz == 'T') {
-  oplacona = 1;
-  cout << "Dziekujemy za uregulowanie platnosci\n";
-      return;
+    kosztorys->wyswietlKosztorys();
+  cout << "*****Czy chcesz oplacic naprawe? (t/n)*****\n";
+    cin >> odpowiedz;
+    if (odpowiedz == 'n' || odpowiedz == 'N') break;
+    if (odpowiedz == 't' || odpowiedz == 'T') {
+      oplacona = 1;
+      cout << "Dziekujemy za uregulowanie platnosci\n";
+      cout << "Czy drukowac paragon lub fakture? (t/n)\n";
+      while (true) {
+        cin >> odpowiedz;
+        if (odpowiedz == 'n' || odpowiedz == 'N') break;
+        if (odpowiedz == 't' || odpowiedz == 'T') {
+          if (czyBiznesowy) {
+            Faktura(terminRezerwacji->getData(), *kosztorys, dynamic_cast<KlientBiz*>(daneKlienta)->getNIP()).drukuj();
+          }
+          else Paragon(terminRezerwacji->getData(), *kosztorys).drukuj();
+          return;
+
+        }
+        else cout << "Nieprawidlowy wybor";
+      }
     }
-  else cout << "Nieprawidlowy wybor";
+    else cout << "Nieprawidlowy wybor";
   }
+    return;
 }

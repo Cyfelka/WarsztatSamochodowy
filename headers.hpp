@@ -52,6 +52,7 @@ public:
 	void wypisz() const;
 	string getImie() const { return imie; }
 	string getNazwisko() const { return nazwisko; }
+  virtual ~Klient() {}
 };
 
 class KlientBiz:public Klient {
@@ -61,6 +62,7 @@ class KlientBiz:public Klient {
 public:
 	KlientBiz();
 	void wypiszBiz() const;
+  int getNIP() { return nip; }
 
 };
 
