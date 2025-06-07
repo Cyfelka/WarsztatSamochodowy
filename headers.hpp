@@ -10,6 +10,8 @@ using namespace std;
 
 extern int obecnyCzas;
 class Kosztorys;
+class Rezerwacja;
+//extern vector<Rezerwacja*> wszystkieRezerwacje;
 
 class Samochod{
 	string marka;

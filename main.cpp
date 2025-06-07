@@ -9,7 +9,6 @@ using namespace std;
 
 int obecnyCzas = 1;
 vector<Rezerwacja*> wszystkieRezerwacje;
-void skip24h();
 
 
 int main() {
@@ -52,7 +51,7 @@ int main() {
 			cout << "Podaj numer terminu (1-31): ";
 			int numerTerminu = 0;
 			while (
-				!(cin >> numerTerminu) || numerTerminu < 1 || numerTerminu > 31 || !TablicaTerminowStyczen[numerTerminu - 1].czyDostepny()
+				!(cin >> numerTerminu) || numerTerminu < obecnyCzas || numerTerminu > 31 || !TablicaTerminowStyczen[numerTerminu - 1].czyDostepny()
 				) {
 				cin.clear();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -338,33 +337,21 @@ int main() {
 		}
 		case 7: {
 			obecnyCzas++;
-			cout << "Przesunieto czas o 1 dzien. Obecny czas: " << obecnyCzas << ".01.2025\n";
-			cout << "Nacisnij Enter, aby kontynuowac...";
-			cin.get();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			break;
 		}
 		case 8: {
-			obecnyCzas++;
-			cout << "Przesunieto czas o 1 dzien. Obecny czas: " << obecnyCzas << ".01.2025\n";
-			cout << "Nacisnij Enter, aby kontynuowac...";
-			cin.get();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			obecnyCzas+=7;
 			break;
 		}
 		default:
 			break;
 		}
 	}
+	exit(0);
 	for (Rezerwacja* r : wszystkieRezerwacje) {
 		delete r;
 	}
 	wszystkieRezerwacje.clear();
 
 	return 0;
-}
-
-void skip24h() {
-	obecnyCzas++;
-
 }

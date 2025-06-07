@@ -27,7 +27,7 @@ void Termin::wyswietlTermin()const {
 }
 void Termin::wyswietlTerminy(const Termin tab[], int n) {
     const int perRow = 4;
-    cout << "\nWybierz dostepny termin:\n\n";
+    cout << "\nWybierz dostepny termin (dzisiaj "<<obecnyCzas<<".01.2025 )\n\n";
     for (int i = 0; i < n; ++i) {
         tab[i].wyswietlTermin();
         if ((i + 1) % perRow == 0) {

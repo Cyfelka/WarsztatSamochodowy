@@ -64,7 +64,6 @@ Rezerwacja::Rezerwacja() {
 Rezerwacja::~Rezerwacja() {
     delete daneKlienta;
     delete daneSamochodu;
-    delete kosztorys;
     cout << "Destruktor Rezerwacja (ID: " << idRezerwacji << ") - pamiec zwolniona.\n";
 }
 
