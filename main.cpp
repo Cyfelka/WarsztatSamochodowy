@@ -31,6 +31,7 @@ int main() {
 		cout << "  4. Napraw pojazd lub wykonanie kosztorysu\n";
 		cout << "  5. Oplac naprawe\n";
 		cout << "=======================\n";
+		cout << "  6. Wyswietl terminarz\n";
 		cout << "  7. Skip 1 dzien\n";
 		cout << "  8. Skip 7 dni\n";
 		cout << "  9. Zamknij program\n";
@@ -116,6 +117,7 @@ int main() {
 				getline(cin, nazwisko);
 				bool found = false;
 				for (const Rezerwacja* r : wszystkieRezerwacje) {
+					if (r == nullptr)break;
 					if (r->getDaneKlienta()->getImie() == imie && r->getDaneKlienta()->getNazwisko() == nazwisko) {
 						r->wypiszRezerwacje();
 						found = true;
@@ -168,6 +170,7 @@ int main() {
 						found = true;
 						cout << "Dziekujemy za skorzystanie z naszych uslug oto twoj pojazd" << endl;
 						delete r;
+						r = nullptr;
 						break;
 					}
 				}
@@ -187,6 +190,7 @@ int main() {
 						found = true;
 						cout << "Dziekujemy za skorzystanie z naszych uslug oto twoj pojazd" << endl;
 						delete r;
+						r = nullptr;
 						break;
 					}
 				}
@@ -335,12 +339,29 @@ int main() {
 			break;
 			break;
 		}
+		case 6: {
+			Termin::wyswietlTerminy(TablicaTerminowStyczen,31);
+			cout << "Nacisnij Enter, aby kontynuowac...";
+			cin.get();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			break;
+		}
 		case 7: {
 			obecnyCzas++;
+			for (int i = 0; i < obecnyCzas; i++)
+			{
+				TablicaTerminowStyczen[i].zarezerwuj();
+				system("cls");
+			}
 			break;
 		}
 		case 8: {
 			obecnyCzas+=7;
+			for (int i = 0; i < obecnyCzas; i++)
+			{
+				TablicaTerminowStyczen[i].zarezerwuj();
+				system("cls");
+			}
 			break;
 		}
 		default:
