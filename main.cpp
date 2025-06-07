@@ -27,9 +27,9 @@ int main() {
 		cout << "Wybierz, opcje:\n";
 		cout << "  1. Rezerwacja terminu\n";
 		cout << "  2. Status Naprawy pojazdu\n";
+		cout << "  3. Odbierz pojazd\n";
 		cout << "=======================\n";
-		cout << "  3. Sporzadz kosztorys\n";
-		cout << "  4. Napraw pojazd\n";
+		cout << "  4. Napraw pojazd lub wykonanie kosztorysu\n";
 		cout << "  5. Oplac naprawe\n";
 		cout << "=======================\n";
 		cout << "  7. Skip 1 dzien\n";
@@ -138,8 +138,70 @@ int main() {
 			break;
 		}
 		case 3: {
-			vector<Czesc> wszystkieCzesci = Czesc::stworzListeCzesci();
-			Czesc::wyswietlListeCzesci(wszystkieCzesci);
+			system("cls");
+
+			cout << "=== Wyszukiwanie Rezerwacji ===\n";
+
+			cout << "Wybierz typ klienta:\n";
+			cout << "  1. Podaj ID\n";
+			cout << "  2. Podaj Imie i Nazwisko\n";
+			cout << "Podaj wybor (1 lub 2): ";
+			int wybor = 0;
+			while (!(cin >> wybor) || (wybor != 1 && wybor != 2)) {
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "Nieprawidlowy wybor. Wpisz 1 lub 2: ";
+			}
+
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+			if (wybor == 1) {
+				int idRezerwacji;
+				cout << "Podaj ID rezerwacji: ";
+				while (!(cin >> idRezerwacji) || idRezerwacji < 1) {
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Nieprawidlowe ID. Podaj ID rezerwacji (liczba calkowita >= 1): ";
+				}
+				bool found = false;
+				for (const Rezerwacja* r : wszystkieRezerwacje) {
+					if (r->getIdRezerwacji() == idRezerwacji && r->getStatus()==1) {
+						found = true;
+						cout << "Dziekujemy za skorzystanie z naszych uslug oto twoj pojazd" << endl;
+						delete r;
+						break;
+					}
+				}
+				if (!found) {
+					cout << "Nie znaleziono rezerwacji o ID: " << idRezerwacji << endl;
+				}
+			}
+			else if (wybor == 2) {
+				string imie, nazwisko;
+				cout << "Podaj imie: ";
+				getline(cin, imie);
+				cout << "Podaj nazwisko: ";
+				getline(cin, nazwisko);
+				bool found = false;
+				for (const Rezerwacja* r : wszystkieRezerwacje) {
+					if (r->getDaneKlienta()->getImie() == imie && r->getDaneKlienta()->getNazwisko() == nazwisko&& r->getStatus() == 1) {
+						found = true;
+						cout << "Dziekujemy za skorzystanie z naszych uslug oto twoj pojazd" << endl;
+						delete r;
+						break;
+					}
+				}
+				if (!found) {
+					cout << "Nie znaleziono rezerwacji dla klienta: " << imie << " " << nazwisko << endl;
+				}
+			}
+			else {
+				cout << "Podales liczbe z poza zakresu ";
+			}
+			cout << "Nacisnij Enter, aby kontynuowac...";
+			cin.get();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			break;
 			break;
 		}
 		case 4: {

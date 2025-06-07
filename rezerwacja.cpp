@@ -10,7 +10,7 @@ using namespace std;
 
 Rezerwacja::Rezerwacja() {
     srand(static_cast<unsigned>(time(nullptr)));
-    idRezerwacji = rand() % 10 + 1;
+    idRezerwacji = rand() % 100 + 1;
 
     cout << "=== Tworzenie nowej rezerwacji (ID: " << idRezerwacji << ") ===\n";
 
@@ -54,6 +54,7 @@ Rezerwacja::Rezerwacja() {
     if (wybor2==1)
     {
         czyTylkoKosztorys = 1;
+        kosztorys = new Kosztorys(Rezerwacja::getOpisUsterki());
     }
   else
   { czyTylkoKosztorys=0;
@@ -68,6 +69,7 @@ Rezerwacja::~Rezerwacja() {
 
 void Rezerwacja::wypiszRezerwacje() const {
   if (oplacona && daneSamochodu->getNaprawiony()) daneSamochodu->setStatus(1);
+  if (kosztorys->getLiczbaGodzin() != 0 && czyTylkoKosztorys==1) daneSamochodu->setStatus(1);
     cout << "=== Podsumowanie rezerwacji (ID: " << idRezerwacji << ") ===\n";
     if (!czyBiznesowy) {
         daneKlienta->wypisz();
@@ -140,6 +142,10 @@ int Rezerwacja::getTermin() {
   kosztorys->kosztRobocizny();
   kosztorys->kosztCalkowity();
   kosztorys->wyswietlKosztorys(); //debug
+  if (!czyTylkoKosztorys) {
+      daneSamochodu->setNaprawiony();
+	  return;
+  }
   daneSamochodu->setNaprawiony();
 }
 

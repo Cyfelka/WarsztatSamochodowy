@@ -86,6 +86,7 @@ public:
 	Klient* getDaneKlienta() const { return daneKlienta; }
 	bool getTylkoKosztorys() const { return czyTylkoKosztorys; }
 	void setStatus(bool s) { daneSamochodu->setStatus(s); }
+	bool getStatus() const { return daneSamochodu->getStatus(); }
 	void setKosztorys(Kosztorys* k) { kosztorys = k; }
   void naprawSamochod() const;
   void oplac() const;
@@ -126,6 +127,7 @@ public:
 	double kosztCalkowity() const;
 	void wyswietlKosztorys() const;
   void dodajGodziny(double godziny);
+  double getLiczbaGodzin() const { return liczbaGodzin; }
 
 };
 
